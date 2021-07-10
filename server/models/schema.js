@@ -22,7 +22,7 @@ const Schema=new mongoose.Schema({
         required:true,
         unique:true
     },
-    profession:{
+    work:{
         type:String,
         required:true,
     },
