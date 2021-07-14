@@ -2,6 +2,8 @@ const express= require('express');
 const dotenv=require('dotenv');
 const app=express();
 
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
 dotenv.config({path:'./.env'});
 
 //import database data

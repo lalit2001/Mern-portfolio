@@ -43,6 +43,13 @@ const Schema=new mongoose.Schema({
                 required:true,
             }
         }
+    ],
+    messages:[
+        {
+            message:{
+                type:String
+            }
+        }
     ]
 });
 

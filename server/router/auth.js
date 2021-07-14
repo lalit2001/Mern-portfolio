@@ -2,6 +2,7 @@ const express=require('express');
 require('../db/conn');
 const bcrypt=require("bcryptjs");
 const jwt= require('jsonwebtoken');
+const authentication=require('../middleware/authentication');
 
 const User= require("../models/schema");
 
@@ -17,22 +18,35 @@ const router = express.Router();
 router.get('/',(req,res)=>{
     res.send('home page');
 });
-router.get('/about',(req,res)=>{
-    res.send('about page');
+router.get('/about',authentication,(req,res)=>{
+    res.send(req.rootUser);
 });
 
-router.get('/contact',(req,res)=>{
-    res.send('contact page');
-});
-
-router.get('/signin',(req,res)=>{
-    res.send('signin page');
+//for home
+router.get('/getdata',authentication,(req,res)=>{
+    res.send(req.rootUser);
 });
 
 
-router.get('/signup',(req,res)=>{
-    res.send('signup page');
+//logout 
+router.get('/logout',(req,res)=>{
+    
+    res.clearCookie('jwtoken',{path:'/'});
+    res.status(200).send('log out');
 });
+
+// router.get('/contact',(req,res)=>{
+//     res.send('contact page');
+// });
+
+// router.get('/signin',(req,res)=>{
+//     res.send('signin page');
+// });
+
+
+// router.get('/signup',(req,res)=>{
+//     res.send('signup page');
+// });
 
 // router.post('/register',async(req,res)=>{
 
@@ -94,7 +108,7 @@ router.post('/register',async(req,res)=>{
         
     
     } catch (error) {
-        console.log(err);
+        console.log(error);
     }
 
 
