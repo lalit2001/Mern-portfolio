@@ -97,16 +97,6 @@ router.post('/register',async(req,res)=>{
         
         res.status(201).json({message:"registerd"});
 
-        // if(userRegister){
-        //     res.status(201).json({message:"registerd"});
-        // }else{
-        //     res.status(500).json({message:'failed to register'});
-        // }
-
-        
-
-        
-    
     } catch (error) {
         console.log(error);
     }
@@ -115,6 +105,31 @@ router.post('/register',async(req,res)=>{
     
     
 });
+
+//contact us
+// router.post ('/getdata',authentication,async (req,res)=>{
+//     const {message}=req.body;
+
+//     if(!message){
+//         return res.status(422).json({error:'Plz fill the property'});
+//     }
+
+//     try {
+        
+
+//         const user =new User({message});
+        
+        
+//         // const userRegister=
+//         await user.save();  
+        
+//         res.status(201).json({message:"message send"});
+
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+// })
 
 
 //login route

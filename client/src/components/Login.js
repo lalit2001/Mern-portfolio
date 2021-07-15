@@ -1,8 +1,12 @@
-import {React,useState} from 'react';
+import {React,useContext,useState} from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import pic from '../img/login.svg';
+import {UserContext} from '../App';
+
 
 const Login = () => {
+
+    const {state , dispatch} = useContext(UserContext);
 
     const history=useHistory();
     const [email,setEmail]= useState('');
@@ -19,7 +23,7 @@ const Login = () => {
             },
             body:JSON.stringify({
                 email,password
-            })
+            }) 
         });
         const data=res.json();
         if(res.status===400 ||!data){
@@ -27,9 +31,14 @@ const Login = () => {
             
             console.log(data);
         }else{
+
+            //for show logout
+            dispatch({type:'USER',payload:true});
+
+
             window.alert("Login Sucessfull");
             history.push('/');
-            console.log(data);
+            
     }
     }
 

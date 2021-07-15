@@ -9,11 +9,18 @@ import Signup from './components/Signup';
 import Contact from './components/Contact';
 import ErrorData from './components/ErrorData';
 import Logout from './components/Logout';
+import { createContext ,useReducer} from 'react';
+import { initialState,reducer } from './reducer/UseReducer';
 
+
+export const UserContext=createContext()
 function App() {
-  return (
-    <>
-      <Navbar/>
+
+  
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const Routing=()=>{
+    return(
       <Switch>
       <Route exact path='/'>
         <Home/>
@@ -44,6 +51,16 @@ function App() {
         <ErrorData/>
       </Route>
       </Switch>
+    )
+  }
+
+  return (
+    
+    <>
+    <UserContext.Provider value={{state,dispatch}}>
+      <Navbar/>
+    <Routing/>
+      </UserContext.Provider>
     </>
   );
 }

@@ -3,36 +3,36 @@ import '../App.css';
 import { useState , useEffect } from 'react';
 
 const Contact = () => {
-    const [messageData, setMessage] = useState('');
-    const [show, setShow] = useState(false);
+    // const [messageData, setMessage] = useState('');
+    // const [show, setShow] = useState(false);
     
-    const pushMessage = async ()=>{
-        try {
-            const res= await fetch('/getdata',{
-                method: 'GET',
-                headers:{
-                    "Content-Type":"application/json"
-                },
-            });
+    // const pushMessage = async ()=>{
+    //     try {
+    //         const res= await fetch('/getdata',{
+    //             method: 'GET',
+    //             headers:{
+    //                 "Content-Type":"application/json"
+    //             },
+    //         });
 
-            const data=await res.json();
-            setMessage(data.name);
-            setShow(true);
-            // console.log(homeData);
+    //         const data=await res.json();
+    //         setMessage(data.name);
+    //         setShow(true);
+    //         // console.log(homeData);
 
-            if(!res.status===200){
-                const error = new Error(res.error);
-                throw error;
-            }
-        } catch (error) {
-            console.log(error);
+    //         if(!res.status===200){
+    //             const error = new Error(res.error);
+    //             throw error;
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
             
-        }
-    }
+    //     }
+    // }
 
-    useEffect(() => {
-        pushMessage();
-    }, []);
+    // useEffect(() => {
+    //     pushMessage();
+    // }, []);
     return (
         <>
             <div className='d-flex align-items-center justify-content-center mt-5 bg' style={{height: "35em"}}>
